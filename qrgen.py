@@ -10,35 +10,35 @@ def createhach():
     return generated_key
 
 
-def createQRPAY(n_):
-    for i in range(1, n_):
-        img_bg = Image.open('qpayPay.png')
-
-        qr = qrcode.QRCode(box_size=73)
-        hash__ = createhach()
-        qr.add_data(f'https://qpayinc.herokuapp.com/q/{hash__}/')
-        qr.make()
-        img_qr = qr.make_image()
-
-        pos = (img_bg.size[0] - img_qr.size[0] - 150, img_bg.size[1] - img_qr.size[1] - 1050)
-
-        img_bg.paste(img_qr, pos)
-        img_bg.save(f'QrPay{hash__}.png')
+# def createQRPAY(n_):
+#     for i in range(1, n_):
+#         img_bg = Image.open('qpayPay.png')
+#
+#         qr = qrcode.QRCode(box_size=73)
+#         hash__ = createhach()
+#         qr.add_data(hash__)
+#         qr.make()
+#         img_qr = qr.make_image()
+#
+#         pos = (img_bg.size[0] - img_qr.size[0] - 150, img_bg.size[1] - img_qr.size[1] - 1050)
+#
+#         img_bg.paste(img_qr, pos)
+#         img_bg.save(f'QrPay{hash__}.png')
 
 
 def createQRINFO(n_):
     for i in range(1,n_):
-        img_bg = Image.open('qpayInfo.png')
+        img_bg = Image.open('qrw.png')
         hash__ = createhach()
-        qr = qrcode.QRCode(box_size=73)
-        qr.add_data(f'https://qpayinc.herokuapp.com/q/{hash__}/')
+        qr = qrcode.QRCode(box_size=10)
+        qr.add_data(hash__)
         qr.make()
         img_qr = qr.make_image()
 
-        pos = (img_bg.size[0] - img_qr.size[0] - 150, img_bg.size[1] - img_qr.size[1] - 1050)
-
+        pos = (img_bg.size[0] - img_qr.size[0] - 100, img_bg.size[1] - img_qr.size[1] - 100)
+        print('pos', pos)
         img_bg.paste(img_qr, pos)
-        img_bg.save(f'QrInfo{hash__}.png')
+        img_bg.save(f'info/{hash__}.png')
 
 # for i in range(40):
 #
@@ -51,19 +51,19 @@ def createQRINFO(n_):
 # createQRINFO(20)
 # createQRPAY(20)
 # createQRPAY(20)
-thread1 = threading.Thread(target=createQRINFO,args=(20,))
-thread2 = threading.Thread(target=createQRINFO,args=(20,))
-thread3 = threading.Thread(target=createQRPAY,args=(20,))
-thread4 = threading.Thread(target=createQRPAY,args=(20,))
+thread1 = threading.Thread(target=createQRINFO,args=(5,))
+# thread2 = threading.Thread(target=createQRINFO,args=(20,))
+# thread3 = threading.Thread(target=createQRPAY,args=(20,))
+# thread4 = threading.Thread(target=createQRPAY,args=(20,))
 
 thread1.start()
 thread2.start()
-thread3.start()
-thread4.start()
+# thread3.start()
+# thread4.start()
 thread1.join()
 thread2.join()
-thread3.join()
-thread4.join()
+# thread3.join()
+# thread4.join()
 
 
 # createQRPAY()
